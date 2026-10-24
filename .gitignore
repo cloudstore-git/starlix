@@ -7,3 +7,4 @@ web/public/config.json
 .DS_Store
 coverage/
 cdk-outputs.json
+*.tsbuildinfo
