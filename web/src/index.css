@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ported from the original Starlix base.css */
+@layer base {
+  body {
+    @apply font-app text-base text-copy bg-page;
+  }
+  h1 {
+    @apply text-3xl font-semibold;
+  }
+  h2 {
+    @apply text-2xl font-semibold;
+  }
+  h3 {
+    @apply text-xl font-semibold;
+  }
+  h4 {
+    @apply text-lg font-medium;
+  }
+  a {
+    @apply text-link no-underline hover:underline;
+  }
+  input[type='text'],
+  input[type='password'],
+  input[type='email'],
+  input[type='date'],
+  input[type='number'],
+  input[type='search'],
+  select,
+  textarea {
+    @apply w-full border border-default-border rounded-md px-3 py-2 shadow-sm bg-white
+      focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50
+      disabled:bg-copy-5xlight disabled:text-copy-xlight;
+  }
+  input[type='checkbox'],
+  input[type='radio'] {
+    @apply w-4 h-4 accent-blue-700;
+  }
+  label {
+    @apply text-sm font-medium text-copy-light;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 font-medium leading-6 px-5 py-2 whitespace-nowrap bg-primary text-white rounded-md
+      hover:bg-primary-hover hover:no-underline disabled:bg-copy-4xlight disabled:text-copy-xlight disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 leading-6 px-5 py-2 whitespace-nowrap bg-slate-200 text-primary rounded-md
+      hover:bg-slate-300 hover:no-underline disabled:text-copy-xlight disabled:cursor-not-allowed;
+  }
+  .btn-red {
+    @apply inline-flex items-center gap-2 font-medium leading-6 px-5 py-2 whitespace-nowrap bg-red-800 text-white rounded-md
+      hover:bg-red-700 hover:no-underline disabled:bg-copy-4xlight;
+  }
+  .btn-small {
+    @apply px-3 py-1 text-sm;
+  }
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-ring;
+  }
+  .table-data {
+    @apply w-full text-left;
+  }
+  .table-data th {
+    @apply px-4 py-3 text-sm font-medium text-copy-xlight bg-white border-b border-ring whitespace-nowrap;
+  }
+  .table-data td {
+    @apply px-4 py-3 border-b border-separator align-middle;
+  }
+  .table-data tbody tr:hover {
+    @apply bg-primary-5xlight;
+  }
+  .vtable {
+    @apply w-full;
+  }
+  .vtable th {
+    @apply w-1/3 py-2 pr-4 text-left text-sm font-medium text-copy-xlight align-top;
+  }
+  .vtable td {
+    @apply py-2 align-top;
+  }
+  .field-error {
+    @apply text-sm text-error mt-1;
+  }
+}
+
+.icon-mask {
+  display: inline-block;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  flex-shrink: 0;
+}

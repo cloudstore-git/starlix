@@ -1,0 +1,32 @@
+{
+  "name": "starlix",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Starlix demo MVP on AWS serverless (Lambda, DynamoDB, API Gateway, Cognito)",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "test": "vitest run",
+    "synth": "cdk synth",
+    "deploy": "./deploy.sh",
+    "local": "tsx scripts/local.ts"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.145",
+    "@types/node": "^20.16.0",
+    "aws-cdk": "^2.1000.0",
+    "esbuild": "^0.24.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "^3.670.0",
+    "@aws-sdk/client-dynamodb": "^3.670.0",
+    "@aws-sdk/client-eventbridge": "^3.670.0",
+    "@aws-sdk/client-s3": "^3.670.0",
+    "@aws-sdk/lib-dynamodb": "^3.670.0",
+    "@aws-sdk/s3-request-presigner": "^3.670.0",
+    "aws-cdk-lib": "^2.170.0",
+    "constructs": "^10.4.0"
+  }
+}
