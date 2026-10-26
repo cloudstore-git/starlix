@@ -13,7 +13,7 @@ import * as events from 'aws-cdk-lib/aws-events';
 import * as targets from 'aws-cdk-lib/aws-events-targets';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
-import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
+import { NodejsFunction, OutputFormat } from 'aws-cdk-lib/aws-lambda-nodejs';
 import * as logs from 'aws-cdk-lib/aws-logs';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
@@ -139,8 +139,18 @@ export class StarlixStack extends Stack {
           NODE_OPTIONS: '--enable-source-maps',
           ...extraEnv,
         },
-        // Unminified so the code reads normally in the Lambda console; source maps map stack traces back to the .ts files
-        bundling: { minify: false, keepNames: true, sourceMap: true, target: 'node22' },
+        // ES module output (index.mjs), unminified so the code reads normally in the Lambda console;
+        // source maps map stack traces back to the .ts files. The banner gives bundled CommonJS
+        // dependencies a working require(); the AWS SDK v3 comes from the runtime and is not bundled.
+        bundling: {
+          format: OutputFormat.ESM,
+          mainFields: ['module', 'main'],
+          minify: false,
+          keepNames: true,
+          sourceMap: true,
+          target: 'node22',
+          banner: "import { createRequire } from 'module'; const require = createRequire(import.meta.url);",
+        },
         depsLockFilePath: path.join(root, 'package-lock.json'),
         projectRoot: root,
       });
