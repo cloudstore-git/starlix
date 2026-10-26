@@ -139,7 +139,8 @@ export class StarlixStack extends Stack {
           NODE_OPTIONS: '--enable-source-maps',
           ...extraEnv,
         },
-        bundling: { minify: true, sourceMap: true, target: 'node22' },
+        // Unminified so the code reads normally in the Lambda console; source maps map stack traces back to the .ts files
+        bundling: { minify: false, keepNames: true, sourceMap: true, target: 'node22' },
         depsLockFilePath: path.join(root, 'package-lock.json'),
         projectRoot: root,
       });
